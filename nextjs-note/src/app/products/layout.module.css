@@ -11,3 +11,11 @@
 .product {
   padding: 16px;
 }
+
+.productUl {
+  padding: 16px;
+}
+
+.productUl li {
+  padding: 2px 0;
+}
