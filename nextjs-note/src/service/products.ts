@@ -13,6 +13,7 @@ export async function getProducts(): Promise<Product[]> {
   return JSON.parse(data);
 }
 
-export function getProduct(id: string) {
-  return 'shirt';
+export async function getProduct(id: string): Promise<Product | undefined> {
+  const products = await getProducts();
+  return products.find((product) => product.id === id);
 }

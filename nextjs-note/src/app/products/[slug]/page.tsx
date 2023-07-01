@@ -13,22 +13,22 @@ export function generateMetadata({ params }: Props) {
   };
 }
 
-export default function PantsPage({ params: { slug } }: Props) {
-  const product = getProduct(slug);
+export default async function ProductPage({ params: { slug } }: Props) {
+  const product = await getProduct(slug);
 
   if (!product) {
     notFound();
   }
 
   // 서버 파일에 있는 데이터 중 해당 제품의 정보를 찾아와 그 정보를 보여준다.
-  return <h1>{product} 제품 설명 페이지</h1>;
+  return <h1>{product.name} 제품 설명 페이지</h1>;
 }
 
-// 미리 페이지를 만들어두고 싶은 경우 generateStaticParams 함수를 사용한다.
-export function generateStaticParams() {
+// 미리 페이지를 만들어두고 싶은 경우 generateStaticParams 함수 사용
+export async function generateStaticParams() {
   // 모든 제품의 페이지들을 미리 만들어 두도록 설정함(SSG)
-  const products = getProducts();
-  return products.map((product) => ({
-    slug: product
+  const products = await getProducts();
+  return products.map(({ id }) => ({
+    slug: id
   }));
 }
