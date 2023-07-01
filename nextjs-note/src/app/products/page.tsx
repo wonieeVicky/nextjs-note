@@ -7,7 +7,8 @@ import styles from './page.module.css';
 export default async function ProductsPage() {
   const products = await getProducts();
   const res = await fetch('http://meowfacts.herokuapp.com/', {
-    next: { revalidate: 3 }
+    // next: { revalidate: 0 } // 3초마다 정보 갱신하도록 next 설정
+    cache: 'no-store'
   });
   const data = await res.json();
   const factText = data.data[0];
