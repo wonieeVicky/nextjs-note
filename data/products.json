@@ -1,16 +1,16 @@
 [
   {
-    "id": "1234",
+    "id": "jeans",
     "name": "청바지",
     "price": 25000
   },
   {
-    "id": "1235",
+    "id": "tshirt",
     "name": "티셔츠",
     "price": 15000
   },
   {
-    "id": "1236",
+    "id": "shoes",
     "name": "부츠",
     "price": 50000
   }
