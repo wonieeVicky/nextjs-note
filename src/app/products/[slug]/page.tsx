@@ -1,5 +1,9 @@
 ﻿import { getProduct, getProducts } from '@/service/products';
 import { notFound } from 'next/navigation';
+import Image, { StaticImageData } from 'next/image';
+import jeansImage from '../../../../public/images/jeans.jpg';
+import shoesImage from '../../../../public/images/shoes.jpg';
+import tshirtImage from '../../../../public/images/tshirt.jpg';
 
 export const revalidate = 3;
 
@@ -22,8 +26,19 @@ export default async function ProductPage({ params: { slug } }: Props) {
     notFound();
   }
 
+  const mapSrcToImage: Record<string, StaticImageData> = {
+    jeans: jeansImage,
+    shoes: shoesImage,
+    tshirt: tshirtImage
+  };
+
   // 서버 파일에 있는 데이터 중 해당 제품의 정보를 찾아와 그 정보를 보여준다.
-  return <h1>{product.name} 제품 설명 페이지</h1>;
+  return (
+    <>
+      <h1>{product.name} 제품 설명 페이지</h1>
+      <Image src={mapSrcToImage[slug]} alt={`${slug}Image`} width={500} />
+    </>
+  );
 }
 
 // 미리 페이지를 만들어두고 싶은 경우 generateStaticParams 함수 사용
