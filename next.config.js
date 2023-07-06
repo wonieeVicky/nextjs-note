@@ -13,12 +13,24 @@ const nextConfig = {
       {
         source: '/products/deleted_forever',
         destination: '/products',
-        permanent: true // status 308
+        permanent: true // status 308 - search engine에게 영구적 캐싱해도 된다고 알려줌
       },
       {
         source: '/products/deleted_temp',
         destination: '/products',
-        permanent: false // status 308
+        permanent: false
+      }
+    ];
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/vicky',
+        destination: '/about/me/vicky'
+      },
+      {
+        source: '/items/:slug',
+        destination: '/products/:slug'
       }
     ];
   }
