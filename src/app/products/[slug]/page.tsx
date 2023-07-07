@@ -1,6 +1,7 @@
 ﻿import { getProduct, getProducts } from '@/service/products';
-import { notFound, redirect } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import Image from 'next/image';
+import GoProductsButton from '@/components/GoProductsButton';
 
 export const revalidate = 3;
 
@@ -29,6 +30,8 @@ export default async function ProductPage({ params: { slug } }: Props) {
     <>
       <h1>{product.name} 제품 설명 페이지</h1>
       <Image src={`/images/${product.image}`} alt={`${product.name} Image`} width={300} height={300} />
+      {/* 서버 컴포넌트는 클릭 이벤트를 수행할 수 없으므로 별도 클라이언트 컴포넌트에서 import */}
+      <GoProductsButton />
     </>
   );
 }
